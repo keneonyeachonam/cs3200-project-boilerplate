@@ -25,6 +25,7 @@ CREATE TABLE user (
   userID int PRIMARY KEY AUTO_INCREMENT,
   firstName varchar(50) NOT NULL,
   lastName varchar(50) NOT NULL, 
+  email varchar(50) NOT NULL,
   userYear int,
   major varchar(100),
   banned boolean NOT NULL DEFAULT 0,

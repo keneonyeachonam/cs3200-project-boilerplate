@@ -140,7 +140,8 @@ CREATE TABLE resources (
 CREATE TABLE moderator (
   moderatorID int PRIMARY KEY AUTO_INCREMENT,
   firstName varchar(50) NOT NULL,
-  lastName varchar(50) NOT NULL
+  lastName varchar(50) NOT NULL,
+  email varchar(50) NOT NULL
 );
 
 CREATE TABLE userInGroup (

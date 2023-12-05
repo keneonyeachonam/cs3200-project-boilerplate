@@ -37,6 +37,8 @@ def create_app():
     from src.products.products  import products
     #TODO ADD BLUEPRINT OBJECTS
     from src.studyGroups.studyGroups import studyGroups
+    from src.users.users import users
+    from src.messageBoards.messageBoards import messageBoards
 
 
     # Register the routes from each Blueprint with the app object
@@ -45,5 +47,7 @@ def create_app():
     app.register_blueprint(products,    url_prefix='/p')
     #TODO Add registering app object
     app.register_blueprint(studyGroups,  url_prefix='/s')
+    app.register_blueprint(users,       url_prefix='/u')
+    app.register_blueprint(messageBoards, url_prefix='/m')
     # Don't forget to return the app object
     return app

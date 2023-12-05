@@ -21,3 +21,115 @@ def get_studyGroups():
     the_response.mimetype = 'application/json'
     return the_response
 
+@studyGroups.route('/StudyGroups', methods=['POST'])
+def add_new_studyGroup():
+    
+    # collecting data from the request object 
+    the_data = request.json
+    #current_app.logger.info(the_data)
+
+    #(studySubject, organizer, groupName, meetingTime, capacity, enrollment, goal)
+    #extracting the variable
+    studySubject = the_data['studySubject']
+    organizer = the_data['organizer']
+    groupName = the_data['groupName']
+    meetingTime = the_data['meetingTime']
+    capacity = the_data['capacity']
+    enrollment = the_data['enrollment']
+    goal = the_data['goal']
+
+
+    # Constructing the query
+    query = 'insert into studyGroup (studySubject, organizer, groupName, meetingTime, capacity, enrollment, goal) values ("'
+    query += studySubject + '", "'
+    query += organizer + '", "'
+    query += groupName + '", "'
+    query += meetingTime + '", "'
+    query += capacity + '", "'
+    query += enrollment + '", "'
+    query += goal + ')'
+    #current_app.logger.info(query)
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return 'Success!'
+
+
+
+
+
+@studyGroups.route('/StudyGroups/<id>', methods=['GET'])
+def get_studyGroups_details(id):
+
+    query = 'SELECT groupID, groupName, studySubject,\
+        goal, capacity, enrollment, meetingTime FROM studyGroup WHERE groupID = ' + str(id)
+    #current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    column_headers = [x[0] for x in cursor.description]
+    json_data = []
+    the_data = cursor.fetchall()
+    for row in the_data:
+        json_data.append(dict(zip(column_headers, row)))
+    return jsonify(json_data)
+
+
+
+@studyGroups.route('/StudyGroups/<id>', methods=['DELETE'])
+def delete_studyGroup_byId(id):
+
+    query = 'DELETE FROM studyGroup WHERE groupID = ' + str(id)
+    #current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    return 'Success!'
+
+
+
+
+@studyGroups.route('/StudyGroups/<id>/<date>/<userId>', methods=['POST'])
+def set_attendance_for(id,date,userId):    
+    # collecting data from the request object 
+
+
+    #(userID, groupID, sessionDate, attended)
+    
+
+
+    # Constructing the query
+    query = 'insert into attendance (userID, groupID, sessionDate, attended) values ("'
+    query += userId + '", "'
+    query += id + '", "'
+    query += date + '", "'
+    query += str(1) + ')'
+    #current_app.logger.info(query)
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return 'Success!'    
+
+
+@studyGroups.route('/StudyGroups/<id>/<date>', methods=['GET'])
+def get_attendance_details(id, date):
+
+    query = 'SELECT userID, groupID, sessionDate,\
+        attended FROM attendance WHERE groupID = ' + str(id) + ' AND sessionDate = \'' + str(date).replace("%20", " ") + '\''  #DATETIME(' + ');'
+    #current_app.logger.info(query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    column_headers = [x[0] for x in cursor.description]
+    json_data = []
+    the_data = cursor.fetchall()
+    for row in the_data:
+        json_data.append(dict(zip(column_headers, row)))
+    return jsonify(json_data)    

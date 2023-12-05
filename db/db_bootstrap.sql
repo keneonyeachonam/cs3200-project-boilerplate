@@ -150,9 +150,9 @@ CREATE TABLE IF NOT EXISTS resources (
   groupID int NOT NULL,
   moderatorID int,
   FOREIGN KEY (uploader) REFERENCES user (userID) ON UPDATE cascade ON DELETE cascade,
-  FOREIGN KEY (groupID) REFERENCES studyGroup (groupID) ON UPDATE cascade ON DELETE cascade
+  FOREIGN KEY (groupID) REFERENCES studyGroup (groupID) ON UPDATE cascade ON DELETE cascade,
+  FOREIGN KEY (moderatorID) REFERENCES moderator (moderatorID) ON UPDATE cascade ON DELETE cascade
 );
-
 
 CREATE TABLE IF NOT EXISTS userInGroup (
   userID int NOT NULL,

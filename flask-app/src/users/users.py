@@ -10,7 +10,8 @@ users = Blueprint('Users', __name__)
 @users.route('/Users/<userID>', methods=['GET'])
 def get_customer_with_id(userID):
     cursor = db.get_db().cursor()
-    cursor.execute('select * from user where userID = {0}'.format(userID))
+    #((firstName, lastName, userYear, major, preferredSubject))
+    cursor.execute('select firstName, lastName, userYear, major, subjectName from user join subjects on preferredSubject = subjectID where userID = {0} and banned = 0'.format(userID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()

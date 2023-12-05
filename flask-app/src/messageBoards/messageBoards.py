@@ -10,7 +10,7 @@ messageBoards = Blueprint('messageBoards', __name__)
 @messageBoards.route('/MessageBoards', methods=['GET'])
 def get_messageBoards():
     cursor = db.get_db().cursor()
-    cursor.execute('select * from messageBoard')
+    cursor.execute('select * from messageBoard where banned = 0')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -49,7 +49,7 @@ def post_messageBoards():
 @messageBoards.route('/MessageBoards/<id>', methods=['GET'])
 def get_messageBoards_by_id(id):
     cursor = db.get_db().cursor()
-    cursor.execute('select * from messages WHERE messageBoardID = ' + str(id))
+    cursor.execute('select messageID, author, replyToID, publishTime, content, messages.moderatorID, firstName, lastName from messages join user on userID = author WHERE messageBoardID = ' + str(id) + ' and published = 1')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -80,7 +80,8 @@ def post_messagetoBoard(id):
     query = 'insert into messages (author, replyToID, messageBoardID, content) values ("'
     query += author + '", '
     query += replyToID + ', '
-    query += messageBoardID + ')'
+    query += messageBoardID  + ', "'
+    query += content + '")'
     #current_app.logger.info(query)
 
     # executing and committing the insert statement 
@@ -126,7 +127,8 @@ def post_message_reply(id, messageID):
     query = 'insert into messages (author, replyToID, messageBoardID, content) values ("'
     query += author + '", '
     query += replyToID + ', '
-    query += messageBoardID + ')'
+    query += messageBoardID  + ', "'
+    query += content + '")'
     #current_app.logger.info(query)
 
     # executing and committing the insert statement 

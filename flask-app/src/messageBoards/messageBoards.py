@@ -6,7 +6,7 @@ from src import db
 messageBoards = Blueprint('messageBoards', __name__)
 
 
-# Get msgboard details 
+# Get all messaageboards and their details 
 @messageBoards.route('/MessageBoards', methods=['GET'])
 def get_messageBoards():
     cursor = db.get_db().cursor()
@@ -21,7 +21,7 @@ def get_messageBoards():
     the_response.mimetype = 'application/json'
     return the_response
 
-# Get msgboard details 
+# Post a new msgboard  
 @messageBoards.route('/MessageBoards', methods=['POST'])
 def post_messageBoards():
      # collecting data from the request object 
@@ -45,7 +45,7 @@ def post_messageBoards():
     
     return 'Success!'
 
-# Get msgboard details 
+# Get a specific Message Boards messages 
 @messageBoards.route('/MessageBoards/<id>', methods=['GET'])
 def get_messageBoards_by_id(id):
     cursor = db.get_db().cursor()
@@ -62,7 +62,7 @@ def get_messageBoards_by_id(id):
 
 
 
-# Get msgboard details 
+# Post a new message to an existing message board
 @messageBoards.route('/MessageBoards/<id>', methods=['POST'])
 def post_messagetoBoard(id):
      # collecting data from the request object 
@@ -93,7 +93,7 @@ def post_messagetoBoard(id):
 
 
 
-# Get msgboard details 
+# Delete a message board by updating and setting banned to true
 @messageBoards.route('/MessageBoards/<id>', methods=['DELETE'])
 def delete_messageBoard(id):
      # collecting data from the request object 
@@ -109,7 +109,7 @@ def delete_messageBoard(id):
 
 
 
-# Get msgboard details 
+# Create a new message which replies to an existing message
 @messageBoards.route('/MessageBoards/<id>/<messageID>', methods=['POST'])
 def post_message_reply(id, messageID):
      # collecting data from the request object 
@@ -138,7 +138,7 @@ def post_message_reply(id, messageID):
     
     return 'Success!'    
 
-# Get msgboard details 
+# Delete a specific comment by setting published to 0
 @messageBoards.route('/MessageBoards/<id>/<messageID>', methods=['DELETE'])
 def delete_messageBoard_message(id, messageID):
      # collecting data from the request object 

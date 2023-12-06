@@ -127,10 +127,6 @@ CREATE TABLE IF NOT EXISTS attendance (
 );
 
 
-
-
-
-
 CREATE TABLE IF NOT EXISTS review (
   reviewID int PRIMARY KEY AUTO_INCREMENT,
   groupID int NOT NULL,

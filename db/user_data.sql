@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (1, 'Michelina', 'Lorenc', 'Sociology', 2025, false, '8', '14');
 insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (2, 'Jessalin', 'Casajuana', 'English Literature', 2025, true, '7', '28');
 insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (3, 'Tremayne', 'McMylor', 'English Literature', 2027, false, '27', '38');

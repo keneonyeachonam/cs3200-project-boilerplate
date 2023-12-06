@@ -9,7 +9,7 @@ studyGroups = Blueprint('studyGroups', __name__)
 @studyGroups.route('/StudyGroups', methods=['GET'])
 def get_studyGroups():
     cursor = db.get_db().cursor()
-    cursor.execute('select groupID, groupName, subjectName,\
+    cursor.execute('select groupID as value, groupName as label, subjectName,\
         goal, capacity, enrollment, meetingTime, organizer, firstName, lastName from studyGroup join subjects on studySubject = subjectID join user on organizer = userID')
     row_headers = [x[0] for x in cursor.description]
     json_data = []

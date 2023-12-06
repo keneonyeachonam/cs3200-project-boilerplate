@@ -9,7 +9,7 @@ bookmarks = Blueprint('bookmarks', __name__)
 @bookmarks.route('/bookmarks/<userID>', methods=['GET'])
 def get_bookmarkedMessages(userID):
     query = '''
-        SELECT messageBoard.boardName, messages.*
+        SELECT messageBoard.boardName AS label, messageBoard.boardName.messageBoardID as value, messages.*
         FROM messageBoard
             JOIN bookmark ON messageBoard.messageBoardID = bookmark.messageBoardID
             JOIN messages ON messageBoard.messageBoardID = messages.messageBoardID
@@ -32,6 +32,20 @@ def get_bookmarkedMessages(userID):
 def create_newBookmark(userID, messageBoardID):
     # Constructing the query
     query = 'INSERT INTO bookmark (userID, messageBoardID) VALUES ({0},{1})'.format(userID, messageBoardID)
+    current_app.logger.info(query)
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return 'Message board saved!'
+
+# User un-bookmarks a message board
+@bookmarks.route('/bookmarks/<userID>/<messageBoardID>', methods=['DELETE'])
+def delete_Bookmark(userID, messageBoardID):
+    # Constructing the query
+    query = 'DELETE FROM bookmark WHERE userID = {0} AND messageBoardID = {1}'.format(userID, messageBoardID)
     current_app.logger.info(query)
 
     # executing and committing the insert statement 

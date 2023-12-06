@@ -41,7 +41,7 @@ def update_customer_with_id(userID):
 
 
     # Constructing the query
-    query = 'update user set firstName = ' + firstName + ', lastName = ' + lastName + ', userYear = ' + str(userYear) + ', major = ' + str(major) + ', preferredSubject = ' + str(preferredSubject)
+    query = 'update user set firstName = "' + firstName + '", lastName = "' + lastName + '", userYear = ' + str(userYear) + ', major = "' + str(major) + '", preferredSubject = ' + str(preferredSubject)
     query += ' where userID = {0}'.format(userID)
     #current_app.logger.info(query)
 

@@ -150,4 +150,25 @@ def delete_messageBoard_message(id, messageID):
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
-    return 'Success!'            
+    return 'Success!'
+
+
+    # Update message with specific messageID
+@messageBoards.route('/MessageBoards/<id>/<messageID>', methods=['PUT'])
+def update_messageBoard_message(id, messageID):
+    # collecting data from the request object 
+    the_data = request.json
+
+    content = the_data['content']
+    
+    # Constructing the query
+    query = 'update messages set content = "' + content + '"'
+    query += ' where messageID = {0}'.format(messageID)
+    #current_app.logger.info(query)
+
+    
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return 'Success!'             

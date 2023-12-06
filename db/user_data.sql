@@ -57,4 +57,4 @@ insert into user (userID, first_name, last_name, major, year, banned, preferredS
 insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (57, 'Katleen', 'O''Hear', 'History', 2028, false, '34', '39');
 insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (58, 'Dyna', 'McGonigle', 'Psychology', 2028, false, '42', '15');
 insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (59, 'Trudie', 'Sancias', 'Mathematics', 2027, false, '24', '45');
-insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (60, 'Debby', 'Linney', 'English Literature', 2023, false, '35', '26');
+insert into user (userID, first_name, last_name, major, year, banned, preferredSubject, moderatorID) values (60, 'Debby', 'Linney', 'English Literature', 2023, false, '35', '26'); 

@@ -9,8 +9,8 @@ studyGroups = Blueprint('studyGroups', __name__)
 @studyGroups.route('/StudyGroups', methods=['GET'])
 def get_studyGroups():
     cursor = db.get_db().cursor()
-    cursor.execute('select groupName, studySubject,\
-        goal, capacity, enrollment, meetingTime from studyGroup')
+    cursor.execute('select groupName, subjectName,\
+        goal, capacity, enrollment, meetingTime, organizer, firstName, lastName from studyGroup join subjects on studySubject = subjectID join user on organizer = userID')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -40,14 +40,14 @@ def add_new_studyGroup():
 
 
     # Constructing the query
-    query = 'insert into studyGroup (studySubject, organizer, groupName, meetingTime, capacity, enrollment, goal) values ("'
-    query += studySubject + '", "'
-    query += organizer + '", "'
+    query = 'insert into studyGroup (studySubject, organizer, groupName, meetingTime, capacity, enrollment, goal) values ('
+    query += studySubject + ', '
+    query += organizer + ', "'
     query += groupName + '", "'
-    query += meetingTime + '", "'
-    query += capacity + '", "'
-    query += enrollment + '", "'
-    query += goal + ')'
+    query += meetingTime + '", '
+    query += capacity + ', '
+    query += enrollment + ', "'
+    query += goal + '")'
     #current_app.logger.info(query)
 
     # executing and committing the insert statement 
@@ -64,8 +64,8 @@ def add_new_studyGroup():
 @studyGroups.route('/StudyGroups/<id>', methods=['GET'])
 def get_studyGroups_details(id):
 
-    query = 'SELECT groupID, groupName, studySubject,\
-        goal, capacity, enrollment, meetingTime FROM studyGroup WHERE groupID = ' + str(id)
+    query = 'select groupName, subjectName,\
+        goal, capacity, enrollment, meetingTime, organizer, firstName, lastName from studyGroup join subjects on studySubject = subjectID join user on organizer = userID where groupID = ' + str(id)
     #current_app.logger.info(query)
 
     cursor = db.get_db().cursor()
@@ -103,10 +103,10 @@ def set_attendance_for(id,date,userId):
 
 
     # Constructing the query
-    query = 'insert into attendance (userID, groupID, sessionDate, attended) values ("'
-    query += userId + '", "'
-    query += id + '", "'
-    query += date + '", "'
+    query = 'insert into attendance (userID, groupID, sessionDate, attended) values ('
+    query += userId + ', '
+    query += id + ', "'
+    query += date + '", '
     query += str(1) + ')'
     #current_app.logger.info(query)
 
@@ -121,8 +121,8 @@ def set_attendance_for(id,date,userId):
 @studyGroups.route('/StudyGroups/<id>/<date>', methods=['GET'])
 def get_attendance_details(id, date):
 
-    query = 'SELECT userID, groupID, sessionDate,\
-        attended FROM attendance WHERE groupID = ' + str(id) + ' AND sessionDate = \'' + str(date).replace("%20", " ") + '\''  #DATETIME(' + ');'
+    query = 'SELECT user.userID, firstName, lastName, studyGroup.groupID, groupName, subjectName, sessionDate,\
+        attended FROM attendance join user on attendance.userID = user.userID join studyGroup on attendance.groupID = studyGroup.groupID join subjects on studySubject = subjectID WHERE attendance.groupID = ' + str(id) + ' AND attendance.sessionDate = \'' + str(date).replace("%20", " ") + '\''  #DATETIME(' + ');'
     #current_app.logger.info(query)
 
     cursor = db.get_db().cursor()

@@ -37,9 +37,9 @@ def write_reviewsForGroup(studyGroupID, userID):
     rating = the_data['rating']
 
     # Constructing the query
-    query = 'INSERT INTO review (groupID, author, review, rating) values ("'
-    query += studyGroupID + '", "'
-    query += userID + '", "'
+    query = 'INSERT INTO review (groupID, author, review, rating) values ('
+    query += studyGroupID + ', '
+    query += userID + ', "'
     query += text_review + '", '
     query += rating + ')'
     current_app.logger.info(query)

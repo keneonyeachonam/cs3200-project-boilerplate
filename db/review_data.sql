@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into review_data (reviewID, review, rating, groupID, author) values (1, 'The study group session was extremely helpful and productive.', 4, '6', '20');
 insert into review_data (reviewID, review, rating, groupID, author) values (2, 'I found the study group session to be somewhat beneficial.', 4, '29', '60');
 insert into review_data (reviewID, review, rating, groupID, author) values (3, 'I didn''t find the study group session useful at all.', 3, '21', '36');

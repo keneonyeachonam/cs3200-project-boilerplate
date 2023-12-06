@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into messageboard_data (messageBoardID, boardName, banned, moderatorID) values (1, 'board1', true, '36');
 insert into messageboard_data (messageBoardID, boardName, banned, moderatorID) values (2, 'board3', false, '26');
 insert into messageboard_data (messageBoardID, boardName, banned, moderatorID) values (3, 'board1', false, '42');

@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into studygroup_data (groupID, groupName, meetingTime, capacity, enrollment, goal, moderatorID, studySubject, organizer) values (1, 'Math Wizards', '5/4/2023', 12, null, 'Learn new vocabulary', '9', '52', '17');
 insert into studygroup_data (groupID, groupName, meetingTime, capacity, enrollment, goal, moderatorID, studySubject, organizer) values (2, 'Science Squad', '4/26/2023', 8, null, 'Improve listening comprehension', '7', '22', '41');
 insert into studygroup_data (groupID, groupName, meetingTime, capacity, enrollment, goal, moderatorID, studySubject, organizer) values (3, 'History Heroes', '9/11/2023', 6, null, 'Review previous material', '22', '23', '6');

@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into resources_data (resourceID, uploadTime, uploadedResource, published, uploader, groupID, moderatorID) values (1, '1/31/2023', 'video3', true, '34', '24', '8');
 insert into resources_data (resourceID, uploadTime, uploadedResource, published, uploader, groupID, moderatorID) values (2, '7/5/2023', 'image2', true, '54', '10', '9');
 insert into resources_data (resourceID, uploadTime, uploadedResource, published, uploader, groupID, moderatorID) values (3, '6/29/2023', 'file1', true, '18', '55', '28');

@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into moderator (moderatorID, firstName, lastName) values (1, 'Rosalynd', 'deKnevet');
 insert into moderator (moderatorID, firstName, lastName) values (2, 'Melania', 'Skunes');
 insert into moderator (moderatorID, firstName, lastName) values (3, 'Lisette', 'Kid');

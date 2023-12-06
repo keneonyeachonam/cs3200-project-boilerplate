@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into message_data (messageID, publishTime, content, published, authorID, messageBoardID, moderatorID, replyToID) values (1, '8/15/2023', 'Need help with physics. Any experts out there?', true, '15', '1', '15', null);
 insert into message_data (messageID, publishTime, content, published, authorID, messageBoardID, moderatorID, replyToID) values (2, '6/21/2023', 'Need help with physics. Any experts out there?', true, '9', '28', '29', null);
 insert into message_data (messageID, publishTime, content, published, authorID, messageBoardID, moderatorID, replyToID) values (3, '6/30/2023', 'Need help with physics. Any experts out there?', true, '47', '29', '41', null);

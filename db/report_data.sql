@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into report_data (authorID, reporteeID, reportedMessage, reasoning, resolved, moderatorID) values ('14', '57', '47', 'Offensive content', true, '35');
 insert into report_data (authorID, reporteeID, reportedMessage, reasoning, resolved, moderatorID) values ('12', '33', '56', 'Irrelevant topic', false, '40');
 insert into report_data (authorID, reporteeID, reportedMessage, reasoning, resolved, moderatorID) values ('22', '18', '13', 'Inappropriate language', true, '36');

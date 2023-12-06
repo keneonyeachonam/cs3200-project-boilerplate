@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into subjects (subjectID, subjectName) values (1, 'biology');
 insert into subjects (subjectID, subjectName) values (2, 'physics');
 insert into subjects (subjectID, subjectName) values (3, 'chemistry');

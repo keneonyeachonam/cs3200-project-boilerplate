@@ -1,3 +1,5 @@
+USE virtualStudyGroupOrganizer_db;
+
 insert into bookmark (userID, messageBoardID) values ('8', '38');
 insert into bookmark (userID, messageBoardID) values ('40', '5');
 insert into bookmark (userID, messageBoardID) values ('42', '16');

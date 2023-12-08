@@ -51,7 +51,7 @@ def post_resource(studyGroupID, userID):
     uploadedResource_base64 = uploadedResource.encode('utf-8')  # Assuming 'uploadedResource' is a base64-encoded string
 
     # Constructing the query
-    query = 'INSERT INTO review (uploader, uploadedResource, groupID) values ('
+    query = 'INSERT INTO resources (uploader, uploadedResource, groupID) values ('
     query += str(userID) + ', '
     query += '%s, '  # Use placeholder for binary data
     query += str(studyGroupID) + ')'

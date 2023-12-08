@@ -30,7 +30,7 @@ def post_messageBoards():
 
     #(boardName)
     #extracting the variable
-    boardName = the_data['boardName']
+    boardName = the_data['messageText']
 
 
     # Constructing the query
@@ -63,18 +63,18 @@ def get_messageBoards_by_id(id):
 
 
 # Post a new message to an existing message board
-@messageBoards.route('/MessageBoards/<id>', methods=['POST'])
-def post_messagetoBoard(id):
+@messageBoards.route('/MessageBoards/<id>/<author>', methods=['POST'])
+def post_messagetoBoard(id, author):
      # collecting data from the request object 
     the_data = request.json
     #current_app.logger.info(the_data)
 
     #(author, replyToID, messageBoardID, content)
     #extracting the variable
-    author = the_data['author']
+    author = author
     replyToID = 'NULL'
     messageBoardID = id   
-    content = the_data['content']  
+    content = the_data['messageText']  
  
     # Constructing the query
     query = 'insert into messages (author, replyToID, messageBoardID, content) values ("'
@@ -82,7 +82,7 @@ def post_messagetoBoard(id):
     query += replyToID + ', '
     query += messageBoardID  + ', "'
     query += content + '")'
-    #current_app.logger.info(query)
+    current_app.logger.info(query)
 
     # executing and committing the insert statement 
     cursor = db.get_db().cursor()

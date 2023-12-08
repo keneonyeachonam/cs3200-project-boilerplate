@@ -158,80 +158,80 @@ CREATE TABLE IF NOT EXISTS userInGroup (
   FOREIGN KEY (groupID) REFERENCES studyGroup (groupID) ON UPDATE cascade ON DELETE cascade
 );
 
--- Sample Data
+-- -- Sample Data
 
--- Inserting into the 'subjects' table
-INSERT INTO subjects (subjectName)
-VALUES ('Database Design'),
-       ('Differential Equations'),
-       ('Cornerstone of Engineering');
+-- -- Inserting into the 'subjects' table
+-- INSERT INTO subjects (subjectName)
+-- VALUES ('Database Design'),
+--        ('Differential Equations'),
+--        ('Cornerstone of Engineering');
 
--- Inserting into the 'user' table
-INSERT INTO user (firstName, lastName, userYear, major, preferredSubject)
-VALUES ('John', 'Doe', '2023', 'Computer Science', 1),
-       ('Alice', 'Smith', '2022', 'Engineering', 3),
-       ('Bob', 'Johnson', '2023', 'Mathematics', 2);
+-- -- Inserting into the 'user' table
+-- INSERT INTO user (firstName, lastName, userYear, major, preferredSubject)
+-- VALUES ('John', 'Doe', '2023', 'Computer Science', 1),
+--        ('Alice', 'Smith', '2022', 'Engineering', 3),
+--        ('Bob', 'Johnson', '2023', 'Mathematics', 2);
 
--- Inserting into the 'studyGroup' table
-INSERT INTO studyGroup (studySubject, organizer, groupName, meetingTime, capacity, enrollment, goal)
-VALUES (1, 1, 'Programming Enthusiasts', '2023-01-01 18:00:00', 20, 10, 'Learn and discuss programming'),
-       (2, 2, 'Math Study Group', '2023-01-05 15:30:00', 15, 8, 'Excel in advanced calculus'),
-       (3, 3, 'Engineering Club', '2023-01-10 17:00:00', 25, 15, 'Explore various engineering topics');
+-- -- Inserting into the 'studyGroup' table
+-- INSERT INTO studyGroup (studySubject, organizer, groupName, meetingTime, capacity, enrollment, goal)
+-- VALUES (1, 1, 'Programming Enthusiasts', '2023-01-01 18:00:00', 20, 10, 'Learn and discuss programming'),
+--        (2, 2, 'Math Study Group', '2023-01-05 15:30:00', 15, 8, 'Excel in advanced calculus'),
+--        (3, 3, 'Engineering Club', '2023-01-10 17:00:00', 25, 15, 'Explore various engineering topics');
 
--- Inserting into the 'attendance' table
-INSERT INTO attendance (userID, groupID, sessionDate, attended)
-VALUES (1, 1, '2023-01-01 18:00:00', 1),
-       (2, 2, '2023-01-05 15:30:00', 1),
-       (3, 3, '2023-01-10 17:00:00', 0);
-
-
--- Inserting into the 'review' table
-INSERT INTO review (groupID, author, review, rating)
-VALUES (1, 1, 'Great group for learning programming!', 5),
-       (2, 2, 'Helpful study sessions for math lovers', 4),
-       (3, 3, 'Enjoyable discussions about engineering projects', 5);
-
--- Inserting into the 'resources' table
-INSERT INTO resources (uploader, uploadedResource, groupID)
-VALUES (1, 'Introduction to Databases', 1),
-       (2, 'Advanced Calculus Notes', 2),
-       (3, 'Engineering Project Guidelines', 3);
-
--- Inserting into the 'messageBoard' table
-INSERT INTO messageBoard (boardName)
-VALUES ('General Discussion'),
-       ('Programming Help'),
-       ('Science Talks');
+-- -- Inserting into the 'attendance' table
+-- INSERT INTO attendance (userID, groupID, sessionDate, attended)
+-- VALUES (1, 1, '2023-01-01 18:00:00', 1),
+--        (2, 2, '2023-01-05 15:30:00', 1),
+--        (3, 3, '2023-01-10 17:00:00', 0);
 
 
--- Inserting into the 'messages' table
-INSERT INTO messages (author, replyToID, messageBoardID, publishTime, content, published)
-VALUES (2, NULL, 2, '2023-01-01 08:00:00', 'Anybody needs help with programming?', 1),
-       (3, NULL, 3, '2023-01-01 08:00:00', 'Let us discuss interesting engineering projects!', 1),
-       (2, 1, 1, '2023-01-01 08:00:00', 'Sure, John!', 1),
-       (3, 2, 2, '2023-01-01 08:00:00', 'I am struggling with calculus. Can anyone help?', 1),
-       (1, 3, 3, '2023-01-01 08:00:00', 'I have a biology-related question. Anyone familiar?', 1);
+-- -- Inserting into the 'review' table
+-- INSERT INTO review (groupID, author, review, rating)
+-- VALUES (1, 1, 'Great group for learning programming!', 5),
+--        (2, 2, 'Helpful study sessions for math lovers', 4),
+--        (3, 3, 'Enjoyable discussions about engineering projects', 5);
 
--- Inserting into the 'bookmark' table
-INSERT INTO bookmark (userID, messageBoardID)
-VALUES (1, 1),
-       (2, 2),
-       (3, 3);
+-- -- Inserting into the 'resources' table
+-- INSERT INTO resources (uploader, uploadedResource, groupID)
+-- VALUES (1, 'Introduction to Databases', 1),
+--        (2, 'Advanced Calculus Notes', 2),
+--        (3, 'Engineering Project Guidelines', 3);
 
--- Inserting into the 'moderator' table
-INSERT INTO moderator (firstName, lastName)
-VALUES ('Moderator1', 'Smith'),
-       ('Moderator2', 'Johnson'),
-       ('Moderator3', 'Doe');
+-- -- Inserting into the 'messageBoard' table
+-- INSERT INTO messageBoard (boardName)
+-- VALUES ('General Discussion'),
+--        ('Programming Help'),
+--        ('Science Talks');
 
--- Inserting into the 'userInGroup' table
-INSERT INTO userInGroup (userID, groupID)
-VALUES (1, 1),
-       (2, 2),
-       (3, 3);
 
--- Inserting into the 'report' table
-INSERT INTO report (authorID, reporteeID, reportedMessage, reasoning)
-VALUES (1, 2, 5, 'Inappropriate content'),
-       (2, 3, 2, 'Spamming the board'),
-       (3, 1, 3, 'Disrespectful behavior');
+-- -- Inserting into the 'messages' table
+-- INSERT INTO messages (author, replyToID, messageBoardID, publishTime, content, published)
+-- VALUES (2, NULL, 2, '2023-01-01 08:00:00', 'Anybody needs help with programming?', 1),
+--        (3, NULL, 3, '2023-01-01 08:00:00', 'Let us discuss interesting engineering projects!', 1),
+--        (2, 1, 1, '2023-01-01 08:00:00', 'Sure, John!', 1),
+--        (3, 2, 2, '2023-01-01 08:00:00', 'I am struggling with calculus. Can anyone help?', 1),
+--        (1, 3, 3, '2023-01-01 08:00:00', 'I have a biology-related question. Anyone familiar?', 1);
+
+-- -- Inserting into the 'bookmark' table
+-- INSERT INTO bookmark (userID, messageBoardID)
+-- VALUES (1, 1),
+--        (2, 2),
+--        (3, 3);
+
+-- -- Inserting into the 'moderator' table
+-- INSERT INTO moderator (firstName, lastName)
+-- VALUES ('Moderator1', 'Smith'),
+--        ('Moderator2', 'Johnson'),
+--        ('Moderator3', 'Doe');
+
+-- -- Inserting into the 'userInGroup' table
+-- INSERT INTO userInGroup (userID, groupID)
+-- VALUES (1, 1),
+--        (2, 2),
+--        (3, 3);
+
+-- -- Inserting into the 'report' table
+-- INSERT INTO report (authorID, reporteeID, reportedMessage, reasoning)
+-- VALUES (1, 2, 5, 'Inappropriate content'),
+--        (2, 3, 2, 'Spamming the board'),
+--        (3, 1, 3, 'Disrespectful behavior');

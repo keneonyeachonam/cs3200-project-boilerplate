@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
@@ -26,7 +26,7 @@ def get_messageBoards():
 def post_messageBoards():
      # collecting data from the request object 
     the_data = request.json
-    #current_app.logger.info(the_data)
+    current_app.logger.info(the_data)
 
     #(boardName)
     #extracting the variable
@@ -36,7 +36,7 @@ def post_messageBoards():
     # Constructing the query
     query = 'insert into messageBoard (boardName) values (\''
     query += boardName + '\')'
-    #current_app.logger.info(query)
+    current_app.logger.info(query)
 
     # executing and committing the insert statement 
     cursor = db.get_db().cursor()
@@ -67,7 +67,7 @@ def get_messageBoards_by_id(id):
 def post_messagetoBoard(id, author):
      # collecting data from the request object 
     the_data = request.json
-    #current_app.logger.info(the_data)
+    current_app.logger.info(the_data)
 
     #(author, replyToID, messageBoardID, content)
     #extracting the variable
@@ -100,7 +100,7 @@ def delete_messageBoard(id):
     
  
     query = 'UPDATE messageBoard set banned = 1 WHERE messageBoardID = ' + str(id)
-    #current_app.logger.info(query)
+    current_app.logger.info(query)
 
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -114,7 +114,7 @@ def delete_messageBoard(id):
 def post_message_reply(id, messageID):
      # collecting data from the request object 
     the_data = request.json
-    #current_app.logger.info(the_data)
+    current_app.logger.info(the_data)
 
     #(author, replyToID, messageBoardID, content)
     #extracting the variable
@@ -129,7 +129,7 @@ def post_message_reply(id, messageID):
     query += replyToID + ', '
     query += messageBoardID  + ', "'
     query += content + '")'
-    #current_app.logger.info(query)
+    current_app.logger.info(query)
 
     # executing and committing the insert statement 
     cursor = db.get_db().cursor()
@@ -145,7 +145,7 @@ def delete_messageBoard_message(id, messageID):
     
  
     query = 'UPDATE messages set published = 0 WHERE messageID = ' + str(id)
-    #current_app.logger.info(query)
+    current_app.logger.info(query)
 
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -158,13 +158,14 @@ def delete_messageBoard_message(id, messageID):
 def update_messageBoard_message(id, messageID):
     # collecting data from the request object 
     the_data = request.json
+    current_app.logger.info(the_data)
 
     content = the_data['content']
     
     # Constructing the query
     query = 'update messages set content = "' + content + '"'
     query += ' where messageID = {0}'.format(messageID)
-    #current_app.logger.info(query)
+    current_app.logger.info(query)
 
     
     cursor = db.get_db().cursor()

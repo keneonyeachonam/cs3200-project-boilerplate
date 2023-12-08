@@ -41,7 +41,7 @@ def write_reviewsForGroup(studyGroupID, userID):
     query += str(studyGroupID) + ', '
     query += str(userID) + ', "'
     query += text_review + '", '
-    query += rating + ')'
+    query += str(rating) + ')'
     current_app.logger.info(query)
 
     # executing and committing the insert statement 
